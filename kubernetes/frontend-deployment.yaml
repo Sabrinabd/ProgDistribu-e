@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: user2741/cocktails-frontend:latest # Remplace par ton image
+          ports:
+            - containerPort: 4200
+          env:
+            - name: BACKEND_URL
+              value: "http://backend:3000" # Communication avec le backend
